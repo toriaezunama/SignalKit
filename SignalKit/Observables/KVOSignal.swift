@@ -47,15 +47,22 @@ internal final class KVOObserver: NSObject, Disposable {
     private weak var subject: NSObject?
     private let keyPath: String
     private var isDisposed = false
-    internal var callback: ((value: AnyObject) -> Void)?
+   private var isObserving = false
+   
+   internal var callback: ((value: AnyObject) -> Void)? {
+      didSet {
+         if !isObserving {
+            isObserving = true
+            self.subject?.addObserver(self, forKeyPath: keyPath, options: [.New, .Initial], context: &ObserverContext)
+         }
+      }
+   }
     init(subject: NSObject, keyPath: String) {
         
         self.subject = subject
         self.keyPath = keyPath
         
         super.init()
-        
-        subject.addObserver(self, forKeyPath: keyPath, options: .New, context: &ObserverContext)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {

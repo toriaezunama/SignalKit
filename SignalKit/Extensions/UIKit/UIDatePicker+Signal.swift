@@ -8,6 +8,19 @@
 
 import UIKit
 
+public extension SignalType where ObservationType == NSDate {
+   
+   public func bindTo(datePickerIn picker: UIDatePicker) -> Self {
+      
+      addObserver { [weak picker] in
+         
+         picker?.date = $0
+      }
+      
+      return self
+   }
+}
+
 public extension SignalEventType where Sender: UIDatePicker {
     
     /**

@@ -8,6 +8,18 @@
 
 import UIKit
 
+public extension SignalType where ObservationType == String {
+   
+   public func bindTo(titleIn button: UIButton, forState state: UIControlState) -> Self {
+      
+      addObserver { [weak button] in
+         button?.setTitle($0, forState: state)
+      }
+      
+      return self
+   }
+}
+
 public extension SignalEventType where Sender: UIButton {
     
     /**

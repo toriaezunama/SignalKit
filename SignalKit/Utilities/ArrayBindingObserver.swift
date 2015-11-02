@@ -16,9 +16,9 @@ public final class ArrayBindingObserver<T>: Disposable {
     private lazy var sectionObservers = [Disposable]()
     private var arrayObserver: Disposable?
     
-    public init(array: ObservableArray<ObservableArray<T>>) {
+    public init(array2D: ObservableArray<ObservableArray<T>>) {
         
-        self.array = array
+        self.array = array2D
         
         observeForArrayEvent()
         setupSectionObservers()
@@ -28,7 +28,7 @@ public final class ArrayBindingObserver<T>: Disposable {
         
         let sectionsArray = ObservableArray<ObservableArray<T>>([array])
         
-        self.init(array: sectionsArray)
+        self.init(array2D: sectionsArray)
     }
     
     deinit {

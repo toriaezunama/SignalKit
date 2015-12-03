@@ -8,9 +8,9 @@
 
 import Foundation
 
-public final class ArrayBindingObserver<T>: Disposable {
+public class ArrayBindingObserver<T>: Disposable {
     
-    internal var bindingStrategy: ArrayBindingStrategyType?
+    public var bindingStrategy: ArrayBindingStrategyType?
     internal let array: ObservableArray<ObservableArray<T>>
     
     private lazy var sectionObservers = [Disposable]()

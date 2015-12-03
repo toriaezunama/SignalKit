@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal protocol ArrayBindingStrategyType {
+public protocol ArrayBindingStrategyType {
     
     func reloadAllSections()
     func insertSections(sections: NSIndexSet)
